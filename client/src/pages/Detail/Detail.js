@@ -8,9 +8,6 @@ class Detail extends Component {
   state = {
     ref: {}
   };
-  // Add code to get the ref with an _id equal to the id in the route param
-  // e.g. http://localhost:3000/refs/:id
-  // The ref id for this route can be accessed using this.props.match.params.id
 
   componentDidMount() {
     API.getRef(this.props.match.params.id)
@@ -26,7 +23,7 @@ class Detail extends Component {
             <Jumbotron>
               <h1>
                 {this.state.ref.title}<br/>
-                {this.state.ref.url}
+                <a href={this.state.ref.url}>{this.state.ref.url}</a>
               </h1>
             </Jumbotron>
           </Col>

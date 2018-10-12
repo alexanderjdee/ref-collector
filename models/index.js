@@ -1,3 +1,4 @@
 module.exports = {
-  Ref: require("./ref")
+  Ref: require("./ref"),
+  User: require("./user")
 };

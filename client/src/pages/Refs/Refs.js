@@ -89,12 +89,12 @@ class Refs extends Component {
               <List>
                 {this.state.refs.map(ref => (
                   <ListItem key={ref._id}>
-                    <Link to={"/refs/" + ref._id}>
+                    
                       <strong>
-                        {ref.title}<br/> 
-                        {ref.url}
+                      <Link to={"/refs/" + ref._id}>{ref.title}<br/></Link> 
+                        <a href={ref.url}>{ref.url}</a>
                       </strong>
-                    </Link>
+                    
                     <DeleteBtn onClick={() => this.deleteRef(ref._id)} />
                   </ListItem>
                 ))}
