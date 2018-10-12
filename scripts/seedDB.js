@@ -12,16 +12,19 @@ const refSeed = [
   {
     title: "Tabulator",
     url: "http://tabulator.info",
+    private: false,
     date: new Date(Date.now())
   },
   {
     title: "Sequelize Documentation",
     url: "http://docs.sequelizejs.com",
+    private: false,
     date: new Date(Date.now())
   },
   {
     title: "How to become a Git expert",
     url: "https://medium.freecodecamp.org/how-to-become-a-git-expert-e7c38bf54826",
+    private: true,
     date: new Date(Date.now())
   }
 ];

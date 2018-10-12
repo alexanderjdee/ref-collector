@@ -5,13 +5,14 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, Checkbox, FormBtn } from "../../components/Form";
 
 class Refs extends Component {
   state = {
     refs: [],
     title: "",
-    url: ""
+    url: "",
+    private: false
   };
 
   componentDidMount() {
@@ -20,9 +21,9 @@ class Refs extends Component {
 
   loadRefs = () => {
     API.getRefs()
-      .then(res =>
-        this.setState({ refs: res.data, title: "", url: "" })
-      )
+      .then(res => {
+        this.setState({ refs: res.data, title: "", url: "", private: false });
+      })
       .catch(err => console.log(err));
   };
 
@@ -39,13 +40,21 @@ class Refs extends Component {
     });
   };
 
+  handleCheckboxChange = event => {
+    const {name, checked} = event.target;
+    this.setState({
+      [name]: checked
+    });
+  }
+
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.url) {
+      console.log(this.state.private);
       API.saveRef({
         title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        url: this.state.url,
+        private: this.state.private
       })
         .then(res => this.loadRefs())
         .catch(err => console.log(err));
@@ -73,8 +82,13 @@ class Refs extends Component {
                 name="url"
                 placeholder="URL (required)"
               />
+              <Checkbox
+                checked={this.state.private}
+                onChange={this.handleCheckboxChange}
+                name="private"
+              />
               <FormBtn
-                disabled={!(this.state.author && this.state.url)}
+                disabled={!(this.state.title && this.state.url)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Ref

@@ -7,7 +7,6 @@ export default {
   },
   // Gets the ref with the given id
   getRef: function(id) {
-    console.log(id);
     return axios.get("/api/refs/" + id);
   },
   // Deletes the ref with the given id
