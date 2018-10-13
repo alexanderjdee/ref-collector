@@ -9,6 +9,11 @@ export default {
   getRef: function(id) {
     return axios.get("/api/refs/" + id);
   },
+  //Search refs that contain given string in title
+  searchRefs: function(searchData) {
+    var search = searchData.search;
+    return axios.get("/api/search/" + search);
+  },
   // Deletes the ref with the given id
   deleteRef: function(id) {
     return axios.delete("/api/refs/" + id);

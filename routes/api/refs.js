@@ -7,8 +7,7 @@ router.route("/")
   .post(refsController.create);
 
 // Matches with "/api/refs/:id"
-router
-  .route("/:id")
+router.route("/:id")
   .get(refsController.findById)
   .put(refsController.update)
   .delete(refsController.remove);
