@@ -16,5 +16,12 @@ export default {
   // Saves a ref to the database
   saveRef: function(refData) {
     return axios.post("/api/refs", refData);
+  },
+  //Login with Google
+  login: function(){
+    return axios.get("/api/auth-routes/auth/google");
+  },
+  logout: function(){
+    return axios.get("/api/auth-routes/auth/logout");
   }
 };

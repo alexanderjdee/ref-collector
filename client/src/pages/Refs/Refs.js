@@ -65,7 +65,7 @@ class Refs extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-4">
             <Jumbotron>
               <h1>What Refs Should I See?</h1>
             </Jumbotron>
@@ -95,7 +95,29 @@ class Refs extends Component {
               </FormBtn>
             </form>
           </Col>
-          <Col size="md-6 sm-12">
+          <Col size="md-4 sm-12">
+            <Jumbotron>
+              <h1>All Public Refs</h1>
+            </Jumbotron>
+            {this.state.refs.length ? (
+              <List>
+                {this.state.refs.map(ref => (
+                  <ListItem key={ref._id}>
+                    
+                      <strong>
+                      <Link to={"/refs/" + ref._id}>{ref.title}<br/></Link> 
+                        <a href={ref.url}>{ref.url}</a>
+                      </strong>
+                    
+                    <DeleteBtn onClick={() => this.deleteRef(ref._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </Col>
+          <Col size="md-4 sm-12">
             <Jumbotron>
               <h1>Refs On My List</h1>
             </Jumbotron>
