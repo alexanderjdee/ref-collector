@@ -9,7 +9,9 @@ passport.use(
     clientID: keys.google.clientId,
     clientSecret: keys.google.clientSecret
   }, 
-  () => {
-    //passport callback function
+  (accessToken, refreshToken, profile, cb) => {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
   })
 );

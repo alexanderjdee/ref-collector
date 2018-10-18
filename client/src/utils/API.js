@@ -22,11 +22,11 @@ export default {
   saveRef: function(refData) {
     return axios.post("/api/refs", refData);
   },
-  //Login with Google
-  login: function(){
-    return axios.get("/api/auth-routes/auth/google");
-  },
-  logout: function(){
-    return axios.get("/api/auth-routes/auth/logout");
-  }
+  // //Login with Google
+  // login: function(){
+  //   return axios.get("/api/auth-routes/auth/google");
+  // },
+  // logout: function(){
+  //   return axios.get("/api/auth-routes/auth/logout");
+  // }
 };

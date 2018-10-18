@@ -57,14 +57,11 @@ class Search extends Component {
           {this.state.refs.length ? (
             <List>
               {this.state.refs.map(ref => (
-                <ListItem key={ref._id}>
-                  
-                    <strong>
-                    <Link to={"/refs/" + ref._id}>{ref.title}<br/></Link> 
-                      <a href={ref.url}>{ref.url}</a>
-                    </strong>
-                  
-                  <DeleteBtn onClick={() => this.deleteRef(ref._id)} />
+                <ListItem key={ref._id}> 
+                  <strong>
+                  <Link to={"/refs/" + ref._id}>{ref.title}<br/></Link> 
+                    <a href={ref.url}>{ref.url}</a>
+                  </strong>
                 </ListItem>
               ))}
             </List>

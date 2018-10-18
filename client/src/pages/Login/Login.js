@@ -15,9 +15,9 @@ class Login extends Component {
           </h1>
         </Row>
         <Row>
-          <button className="btn btn-outline-primary login-center" id="google-button" onClick={API.login}>
+          <a href="http://localhost:3001/api/auth-routes/auth/google"><button className="btn btn-outline-primary login-center" id="google-button">
             Google+
-          </button>
+          </button></a>
         </Row>
       </Container>
     );
