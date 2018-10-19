@@ -23,7 +23,7 @@ class Detail extends Component {
             <Jumbotron>
               <h1>
                 {this.state.ref.title}<br/>
-                <a href={this.state.ref.url}>{this.state.ref.url}</a>
+                <a href={this.state.ref.url} target="_blank">{this.state.ref.url}</a>
               </h1>
             </Jumbotron>
           </Col>

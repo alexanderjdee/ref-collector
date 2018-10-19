@@ -105,7 +105,7 @@ class Refs extends Component {
                     
                       <strong>
                       <Link to={"/refs/" + ref._id}>{ref.title}<br/></Link> 
-                        <a href={ref.url}>{ref.url}</a>
+                        <a href={ref.url} target="_blank">{ref.url}</a>
                       </strong>
                     
                     <DeleteBtn onClick={() => this.deleteRef(ref._id)} />
