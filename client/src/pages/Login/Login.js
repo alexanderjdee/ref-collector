@@ -15,7 +15,7 @@ class Login extends Component {
           </h1>
         </Row>
         <Row>
-          <a href="http://localhost:3001/api/auth-routes/auth/google" className="login-center"><button className="btn btn-outline-primary" id="google-button">
+          <a href="http://localhost:3001/api/auth/google" className="login-center"><button className="btn btn-outline-primary" id="google-button">
             Google+
           </button></a>
         </Row>

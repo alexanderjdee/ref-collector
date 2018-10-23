@@ -8,6 +8,6 @@ const searchRoutes = require("../api/search");
 router.use("/refs", refRoutes);
 router.use("/users", userRoutes);
 router.use("/search", searchRoutes);
-router.use("/auth-routes/auth", authRoutes);
+router.use("/auth", authRoutes);
 
 module.exports = router;
