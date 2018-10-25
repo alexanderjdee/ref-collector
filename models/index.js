@@ -1,4 +1,5 @@
 module.exports = {
   Ref: require("./ref"),
-  User: require("./user")
+  User: require("./user"),
+  UserSession: require("./userSession")
 };

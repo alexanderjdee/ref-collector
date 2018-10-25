@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, Checkbox, FormBtn } from "../../components/Form";
+//import ReactTimeAgo from "react-time-ago";
 
 class Refs extends Component {
   state = {
@@ -105,7 +106,8 @@ class Refs extends Component {
                     
                       <strong>
                       <Link to={"/refs/" + ref._id}>{ref.title}<br/></Link> 
-                        <a href={ref.url} target="_blank">{ref.url}</a>
+                        <a href={ref.url} target="_blank">{ref.url}</a><br/>
+                        <spam>{ref.date}</spam>
                       </strong>
                     
                     <DeleteBtn onClick={() => this.deleteRef(ref._id)} />
