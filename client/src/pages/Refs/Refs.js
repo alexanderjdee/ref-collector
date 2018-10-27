@@ -224,6 +224,7 @@ class Refs extends Component {
               onChange={this.handleInputChange}
               name="signInPassword"
               placeholder="Password"
+              type="password"
             />
             <FormBtn
               disabled={!(this.state.signInUsername && this.state.signInPassword)}
@@ -245,6 +246,7 @@ class Refs extends Component {
               onChange={this.handleInputChange}
               name="signUpPassword"
               placeholder="Password"
+              type="password"
             />
             <FormBtn
               disabled={!(this.state.signUpUsername && this.state.signUpPassword)}
