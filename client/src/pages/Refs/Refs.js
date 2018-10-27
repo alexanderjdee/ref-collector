@@ -304,7 +304,10 @@ class Refs extends Component {
                       <strong>
                       <Link to={"/refs/" + ref._id}>{ref.title}<br/></Link> 
                         <a href={ref.url} target="_blank">{ref.url}</a><br/>
-                        <Timestamp time={ref.date} precision={2} />
+                        <Timestamp time={ref.date} precision={2} /><br/>
+                        {ref.private == true &&
+                         <span>Private</span>
+                        }
                       </strong>
                     
                     <DeleteBtn onClick={() => this.deleteRef(ref._id)} />
