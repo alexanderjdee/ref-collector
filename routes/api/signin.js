@@ -162,29 +162,29 @@ router.get('/verify', (req, res, next) => {
 * Log out
 */
 router.get('/logout', (req, res, next) => {
-//Get the token
-const { query } = req;
-const { token } = query;
+  //Get the token
+  const { query } = req;
+  const { token } = query;
 
-//Verify the token is unique
-UserSession.findOneAndUpdate({
-  _id : token,
-  isDeleted: false
-}, {
-  $set:{isDeleted: true}
-}, null, (err, sessions) => {
-  if(err) {
+  //Verify the token is unique
+  UserSession.findOneAndUpdate({
+    _id : token,
+    isDeleted: false
+  }, {
+    $set:{isDeleted: true}
+  }, null, (err, sessions) => {
+    if(err) {
+      return res.send({
+        success: false,
+        message: 'Error: Server error'
+      });
+    }
+
     return res.send({
-      success: false,
-      message: 'Error: Server error'
+      success: true,
+      message: 'Session is logged out'
     });
-  }
-
-  return res.send({
-    success: true,
-    message: 'Session is logged out'
   });
-});
 });
 
 module.exports = router;

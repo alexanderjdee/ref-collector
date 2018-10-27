@@ -22,6 +22,12 @@ export default {
   saveRef: function(refData) {
     return axios.post("/api/refs", refData);
   },
+  signUp: function(signUpData) {
+    return axios.post("/api/account/signup", signUpData);
+  },
+  signIn: function(signInData) {
+    return axios.post("/api/account/signin", signInData);
+  }
   // //Login with Google
   // login: function(){
   //   return axios.get("/api/auth-routes/auth/google");
