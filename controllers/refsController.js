@@ -4,7 +4,7 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Ref
-      .find({private: false})
+      .find({})
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -17,7 +17,7 @@ module.exports = {
   },
   findBySearch: function(req, res){
     db.Ref
-      .find({title : {$regex : ".*" + req.params.search + ".*", $options: "i"}})
+      .find({title : {$regex : ".*" + req.params.search + ".*", $options: "i"}, private: false})
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

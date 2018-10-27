@@ -37,6 +37,7 @@ class Refs extends Component {
             token,
             isLoading: false
           });
+          this.loadRefs();
         } else {
           this.setState({
             isLoading: false
@@ -48,13 +49,11 @@ class Refs extends Component {
         isLoading: false
       })
     }
-    this.loadRefs();
   }
 
   resetUserState = () => {
     this.setState({
       isLoading: false,
-      signInUsername: '',
       signInPassword: '',
       signUpUsername: '',
       signUpPassword: '' 
@@ -62,16 +61,21 @@ class Refs extends Component {
   }
 
   loadRefs = () => {
-    API.getRefs()
-      .then(res => {
-        this.setState({ 
-        refs: res.data, 
-        title: "", 
-        url: "", 
-        private: false, 
-        });
-      })
-      .catch(err => console.log(err));
+    const obj = getFromStorage('the_main_app');
+    if(obj){
+      const { token } = obj;
+      let userId = '';
+      API.getUserID(token).then(res => {userId = res.data[0].userId}).then (res => {
+        API.getUserRefs(userId).then(result => {
+          this.setState({ 
+          refs: result.data.refs, 
+          title: "", 
+          url: "", 
+          private: false, 
+          });
+        }); 
+      }).catch(err => console.log(err));
+    }
   };
 
   deleteRef = id => {
@@ -102,8 +106,19 @@ class Refs extends Component {
         url: this.state.url,
         private: this.state.private
       })
-        .then(res => this.loadRefs())
-        .catch(err => console.log(err));
+        .then(res => {
+          const obj = getFromStorage('the_main_app');
+          if(obj){
+            const { token } = obj;
+            const refId = res.data._id;
+            let userId = '';
+            API.getUserID(token).then(res => {userId = res.data[0].userId}).then (res => {
+              API.updateUser(userId, { $push: { refs: refId } }); 
+            });
+          }
+          this.loadRefs();
+        })
+          .catch(err => console.log(err));
     }
   };
 
@@ -123,6 +138,7 @@ class Refs extends Component {
         setInStorage('the_main_app', { token: res.data.token });
         this.resetUserState();
         this.setState({ token: res.data.token});
+        this.loadRefs();
       })
     })
       .catch(err => console.log(err));
@@ -140,6 +156,7 @@ class Refs extends Component {
       setInStorage('the_main_app', { token: res.data.token });
       this.resetUserState();
       this.setState({ token: res.data.token});
+      this.loadRefs();
     })
       .catch(err => console.log(err));
   };
@@ -158,7 +175,9 @@ class Refs extends Component {
       .then(json => {
         if(json.success){
           this.setState({
+            refs: [],
             token: '',
+            signInUsername: '',
             isLoading: false
           });
         } else {

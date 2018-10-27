@@ -11,7 +11,7 @@ module.exports = {
   },
   findById: function(req, res) {
     db.User
-      .findById(req.params.id)
+      .findById(req.params.id).populate("refs")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -23,7 +23,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

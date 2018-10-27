@@ -27,12 +27,14 @@ export default {
   },
   signIn: function(signInData) {
     return axios.post("/api/account/signin", signInData);
+  },
+  getUserID: function(tokenId) {
+    return axios.get("api/account/usersession/" + tokenId);
+  },
+  updateUser: function (userId, body) {
+    return axios.put("/api/users/" + userId, body);
+  },
+  getUserRefs: function(userId) {
+    return axios.get("/api/users/" + userId);
   }
-  // //Login with Google
-  // login: function(){
-  //   return axios.get("/api/auth-routes/auth/google");
-  // },
-  // logout: function(){
-  //   return axios.get("/api/auth-routes/auth/logout");
-  // }
 };

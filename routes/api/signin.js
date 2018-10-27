@@ -187,4 +187,18 @@ router.get('/logout', (req, res, next) => {
   });
 });
 
+/*
+* Get user id from session
+*/
+router.get('/usersession/:token', (req, res, next) => {
+  //Verify the token is unique
+  UserSession.find({
+    _id : req.params.token,
+    isDeleted: false
+  }).then(dbModel => {
+    res.json(dbModel);
+  })
+    .catch(err => res.status(422).json(err));
+});
+
 module.exports = router;
